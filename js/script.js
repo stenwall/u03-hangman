@@ -10,29 +10,56 @@ const wordList = [
   "juice",
   "vatten",
 ];
-// DOM-nod: knappen som du startar spelet med
-let startGameBtnEl = document.querySelector("#startGameBtn");
-// event listener för startknappen
-startGameBtnEl.addEventListener("click", () => {
-  alert("hej");
-})
-
-// Array av DOM-noder: Knapparna för bokstäverna
-let letterButtonEls = document.querySelectorAll("#letterButtons button");
-
-// Array av DOM-noder: Rutorna där bokstäverna ska stå
-let letterBoxEls = document.querySelectorAll("#letterBoxes > ul");
-
+// Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
+let selectedWord = null;
 // function to generate random word:
 function generateRandomWord(arr) {
   const randomNumber = Math.floor(Math.random() * arr.length);
   return arr[randomNumber];
 }
+// DOM-nod: knappen som du startar spelet med
+let startGameBtnEl = document.querySelector("#startGameBtn");
+// event listener för startknappen
+startGameBtnEl.addEventListener("click", startGame);
+// callback function for event listener
+function startGame() {
+  selectedWord = generateRandomWord(wordList);
+  createLetterBoxes();
+}
 
-// Sträng: ett av orden valt av en slumpgenerator från arrayen ovan
-let selectedWord = generateRandomWord(wordList);
+function createLetterBoxes(arr) {
+
+}
 
 
+function doHomework(subject, callback) {
+  alert(`Starting my ${subject} homework.`);
+  callback();
+}
+function alertFinished() {
+  alert("Finished my homework");
+}
+doHomework("math", alertFinished);
+
+// Node List: Array av DOM-noder - Knapparna för bokstäverna
+let letterButtonEls = document.querySelectorAll("#letterButtons button");
+
+// Node List: Array av DOM-noder - Rutorna där bokstäverna ska stå
+// OBS! denna innehåller just nu bara ul, fast det är en nodelist
+let letterBoxEls = document.querySelectorAll("#letterBoxes ul");
+
+
+
+
+
+// function callback() {
+//   console.log('hej jag är en callback');
+// }
+// function anropaFunktion(minfunktion) {
+//   minfunktion()
+// }
+
+// anropaFunktion(callback);
 
 // TESTA OM DET FUNKAR HÄR
 console.log(letterBoxEls);
