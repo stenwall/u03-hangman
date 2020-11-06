@@ -202,8 +202,8 @@ footer {
   border-color: #000;
 }
 
-.btn--stripe:disabled:after,
-.btn--stripe:hover:after {
+.btn--stripe:disabled::after,
+.btn--stripe:hover::after {
   background-image: -webkit-repeating-linear-gradient(
     45deg,
     #fff,
