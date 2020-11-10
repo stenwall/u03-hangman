@@ -36,11 +36,6 @@ function enableButtons() {
   return letterButtonEls;
 }
 
-// delete letter boxes when new game starts
-function clearLetterBoxes() {
-  letterBoxContainerEl.innerHTML = "";
-}
-
 // create a new <li>-element containing a <input>
 // Use .appendChild() to add the new element to letterBoxEls
 function createLetterBoxes(amount) {
@@ -50,7 +45,6 @@ function createLetterBoxes(amount) {
     letterBoxContainerEl.appendChild(newLiEl);
   }
   letterBoxEls = document.querySelectorAll("#letterBoxes li");
-  console.log(letterBoxEls);
 }
 
 // function to generate random word:
@@ -65,7 +59,7 @@ startGameBtnEl.addEventListener("click", startGame);
 // callback function for event listener
 function startGame() {
   enableButtons();
-  clearLetterBoxes();
+  letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
   selectedWord = generateRandomWord(wordList);
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
