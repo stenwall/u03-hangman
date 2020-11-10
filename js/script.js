@@ -29,6 +29,13 @@ let letterBoxEls = document.querySelectorAll("#letterBoxes li");
 // DOM-node: letter box container
 let letterBoxContainerEl = document.querySelector("#letterBoxes ul");
 
+function enableButtons() {
+  for (let i = 0; i < letterButtonEls.length; i++) {
+    letterButtonEls[i].disabled = false;
+  }
+  return letterButtonEls;
+}
+
 // delete letter boxes when new game starts
 function clearLetterBoxes() {
   letterBoxContainerEl.innerHTML = "";
@@ -57,6 +64,7 @@ startGameBtnEl.addEventListener("click", startGame);
 
 // callback function for event listener
 function startGame() {
+  enableButtons();
   clearLetterBoxes();
   selectedWord = generateRandomWord(wordList);
   let selectedWordLength = selectedWord.length;
