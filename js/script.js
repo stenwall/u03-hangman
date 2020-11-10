@@ -29,11 +29,12 @@ let letterBoxEls = document.querySelectorAll("#letterBoxes li");
 // DOM-node: letter box container
 let letterBoxContainerEl = document.querySelector("#letterBoxes ul");
 
-function enableButtons() {
+// function for enabling and disabling letter buttons
+// isDisabled = boolean
+function setButtonsDisabled(isDisabled) {
   for (let i = 0; i < letterButtonEls.length; i++) {
-    letterButtonEls[i].disabled = false;
+    letterButtonEls[i].disabled = isDisabled;
   }
-  return letterButtonEls;
 }
 
 // create a new <li>-element containing a <input>
@@ -47,7 +48,7 @@ function createLetterBoxes(amount) {
   letterBoxEls = document.querySelectorAll("#letterBoxes li");
 }
 
-// function to generate random word:
+// function to generate a random word
 function generateRandomWord(arr) {
   const randomNumber = Math.floor(Math.random() * arr.length);
   return arr[randomNumber];
@@ -58,22 +59,12 @@ startGameBtnEl.addEventListener("click", startGame);
 
 // callback function for event listener
 function startGame() {
-  enableButtons();
+  setButtonsDisabled(false);
   letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
   selectedWord = generateRandomWord(wordList);
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
 }
 
-// event lyssnaren ska kalla på bl a createLetterBoxes()
-// 1.
-
-// TESTA OM DET FUNKAR HÄR
-// console.log(letterBoxEls);
-
-// Funktion som startar spelet vid knapptryckning, och då tillkallas andra funktioner
-
-// Funktion som tar fram bokstävernas rutor, antal rutor beror på vilket ord slumptas fram
 // Funktion som körs när du trycker på bokstäverna och gissar bokstav
 // Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
-// Funktion som inaktiverar/aktiverar bokstavsknapparna beroende på vilken del av spelet du är på
