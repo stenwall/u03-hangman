@@ -29,6 +29,20 @@ let letterBoxEls = document.querySelectorAll("#letterBoxes li");
 // DOM-node: letter box container
 let letterBoxContainerEl = document.querySelector("#letterBoxes ul");
 
+
+// call function pageInit when document loads
+document.onload = pageInit;
+
+// callback function with event listener for letter buttons 
+// that calls other functions
+function pageInit() {
+  for (const button of letterButtonEls) {
+    button.addEventListener("click", function (event) {
+      
+    });
+  }
+}
+
 // function for enabling and disabling letter buttons
 // isDisabled = boolean
 function setButtonsDisabled(isDisabled) {
@@ -37,8 +51,11 @@ function setButtonsDisabled(isDisabled) {
   }
 }
 
+// function for creating letter boxes
+// for every letter in the selected word, loop through:
 // create a new <li>-element containing a <input>
-// Use .appendChild() to add the new element to letterBoxEls
+// use .appendChild() to add the new element to letterBoxEls
+// then set letterBoxEls again so it's updated
 function createLetterBoxes(amount) {
   for (let i = 0; i < amount; i++) {
     let newLiEl = document.createElement("LI");
