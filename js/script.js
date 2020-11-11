@@ -29,18 +29,17 @@ let letterBoxEls = document.querySelectorAll("#letterBoxes li");
 // DOM-node: letter box container
 let letterBoxContainerEl = document.querySelector("#letterBoxes ul");
 
+// call function pageInit when page loads
+window.onload = pageInit;
 
-// call function pageInit when document loads
-document.onload = pageInit;
-
-// callback function with event listener for letter buttons 
+// callback function with event listener for letter buttons
 // that calls other functions
 function pageInit() {
   for (const button of letterButtonEls) {
-    button.addEventListener("click", function (event) {
-      // other functions go here
-    });
+    button.addEventListener("click", function (event) {});
+    // other functions go here
   }
+  setButtonsDisabled(true);
 }
 
 // function for enabling and disabling letter buttons
