@@ -38,7 +38,7 @@ document.onload = pageInit;
 function pageInit() {
   for (const button of letterButtonEls) {
     button.addEventListener("click", function (event) {
-      
+      // other functions go here
     });
   }
 }
