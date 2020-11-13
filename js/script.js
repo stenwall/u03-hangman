@@ -77,7 +77,7 @@ function doGuess(letter) {
 
 // function that is called when player wins
 function win() {
-  setButtonsDisabled = true;
+  setButtonsDisabled(true);
   startGameBtnEl.textContent = "Starta om spelet";
   messageEl.textContent = "Yey du vann!";
 }
