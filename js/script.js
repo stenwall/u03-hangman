@@ -50,28 +50,31 @@ function letterButtonClickHandler(event) {
 
 // function that is called when player guesses
 function doGuess(letter) {
-  if (isLetterInWord(letter)) {
+  if (isLetterInWord(letter).length > 0) {
+    console.log('hej');
     // another if else to see where the letter are and if player won
   } else if (wrongGuesses <= 5) {
     // function för att disabla bokstavsknapp
     // function för att öka wrongGuesses ett steg
     // function för att ta fram nästa bild
+  } else {
+
   }
 }
 
-// function to check if letter excist in selected word
-function isLetterInWord (letter) {
+// function to check if and where letter excist in selected word
+// returns empty array if letter do not excist
+function isLetterInWord(letter) {
+  let letterIndices = [];
   for (let i = 0; i < selectedWord.length; i++) {
     if (letter == (selectedWord[i])) {
-      return true;
+      letterIndices.push(i);
     }
   }
-  return false;
+  return letterIndices;
 }
 
-
-
-// function for enabling and disabling letter buttons
+// function for enabling and disabling all letter buttons
 // isDisabled = boolean
 function setButtonsDisabled(isDisabled) {
   for (let i = 0; i < letterButtonEls.length; i++) {
@@ -106,7 +109,7 @@ startGameBtnEl.addEventListener("click", startGame);
 function startGame() {
   setButtonsDisabled(false);
   letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
-  selectedWord = generateRandomWord(wordList);
+  selectedWord = generateRandomWord(wordList).toUpperCase();
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
 }
