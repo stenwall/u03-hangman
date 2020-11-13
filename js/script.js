@@ -50,15 +50,27 @@ function letterButtonClickHandler(event) {
 
 // function that is called when player guesses
 function doGuess(letter) {
-  if (isLetterInWord(letter).length > 0) {
-    console.log('hej');
+  let letterPosition = isLetterInWord(letter);
+  if (letterPosition.length > 0) {
+    fillLetterBox(letterPosition, letter);
     // another if else to see where the letter are and if player won
   } else if (wrongGuesses <= 5) {
     // function för att disabla bokstavsknapp
     // function för att öka wrongGuesses ett steg
     // function för att ta fram nästa bild
   } else {
+  }
+}
 
+// function to fill out letter boxes with correct letter
+// loops through array of letter positions
+// connect the number element to the position in arry w letter boxes
+// change value of input in letterbox to the guessed letter
+function fillLetterBox(guessedLetterPosition, guessedLetter) { 
+  for (let i = 0; i < guessedLetterPosition.length; i++) {
+    let position = guessedLetterPosition[i];
+    let box = letterBoxEls[position];
+    box.firstElementChild.value = guessedLetter;
   }
 }
 
@@ -113,6 +125,3 @@ function startGame() {
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
 }
-
-// Funktion som körs när du trycker på bokstäverna och gissar bokstav
-// Funktion som ropas vid vinst eller förlust, gör olika saker beroende tillståndet
