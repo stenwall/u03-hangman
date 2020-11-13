@@ -14,8 +14,8 @@ const wordList = [
 ];
 // save the randomly generated word
 let selectedWord = null;
-// number of guesses made
-let guesses = 0;
+// number of wrong guesses made
+let wrongGuesses = 0;
 // hangman image
 let hangmanImg;
 // DOM-node: where messages show up
@@ -50,8 +50,26 @@ function letterButtonClickHandler(event) {
 
 // function that is called when player guesses
 function doGuess(letter) {
-  
+  if (isLetterInWord(letter)) {
+    // another if else to see where the letter are and if player won
+  } else if (wrongGuesses <= 5) {
+    // function för att disabla bokstavsknapp
+    // function för att öka wrongGuesses ett steg
+    // function för att ta fram nästa bild
+  }
 }
+
+// function to check if letter excist in selected word
+function isLetterInWord (letter) {
+  for (let i = 0; i < selectedWord.length; i++) {
+    if (letter == (selectedWord[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
 
 // function for enabling and disabling letter buttons
 // isDisabled = boolean
