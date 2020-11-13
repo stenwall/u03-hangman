@@ -16,6 +16,8 @@ const wordList = [
 let selectedWord = null;
 // number of wrong guesses made
 let wrongGuesses = 0;
+// number of correct letters
+let correctLetters = 0;
 // hangman image
 let hangmanImg;
 // DOM-node: where messages show up
@@ -43,9 +45,12 @@ function pageInit() {
 }
 
 // callback function for clicking letter buttons
+// disable clicked button
 // sends the value of the letter button to doGuess()
 function letterButtonClickHandler(event) {
-  doGuess(event.target.value);
+  let clickedLetter = event.target;
+  clickedLetter.disabled = true;
+  doGuess(clickedLetter.value);
 }
 
 // function that is called when player guesses
@@ -53,12 +58,15 @@ function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
   if (letterPosition.length > 0) {
     fillLetterBox(letterPosition, letter);
-    // another if else to see where the letter are and if player won
+    // another if else to see if player won?
   } else if (wrongGuesses <= 5) {
     // function för att disabla bokstavsknapp
     // function för att öka wrongGuesses ett steg
     // function för att ta fram nästa bild
   } else {
+    // function för att disabla alla knappar
+    // function för nästa bild
+    // text game over...
   }
 }
 
