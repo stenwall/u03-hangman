@@ -36,10 +36,21 @@ window.onload = pageInit;
 // that calls other functions
 function pageInit() {
   for (const button of letterButtonEls) {
-    button.addEventListener("click", function (event) {});
+    button.addEventListener("click", letterButtonClickHandler);
     // other functions go here
   }
   setButtonsDisabled(true);
+}
+
+// callback function for clicking letter buttons
+// sends the value of the letter button to doGuess()
+function letterButtonClickHandler(event) {
+  doGuess(event.target.value);
+}
+
+// function that is called when player guesses
+function doGuess(letter) {
+  
 }
 
 // function for enabling and disabling letter buttons
@@ -73,7 +84,7 @@ function generateRandomWord(arr) {
 // event listener for start button
 startGameBtnEl.addEventListener("click", startGame);
 
-// callback function for event listener
+// callback function for start button event listener
 function startGame() {
   setButtonsDisabled(false);
   letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
