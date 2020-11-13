@@ -141,6 +141,7 @@ startGameBtnEl.addEventListener("click", startGame);
 function startGame() {
   setButtonsDisabled(false);
   letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
+  messageEl.textContent = ""; // delete old messages
   selectedWord = generateRandomWord(wordList).toUpperCase();
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
