@@ -24,6 +24,8 @@ let hangmanImg;
 let msgHolderEl = document.querySelector("#message");
 // DOM-node: button to start game
 let startGameBtnEl = document.querySelector("#startGameBtn");
+// DOM-node: message element
+let messageEl = document.querySelector("#message");
 // DOM-nodeList: letter buttons
 let letterButtonEls = document.querySelectorAll("#letterButtons button");
 // DOM-nodeList: letter boxes
@@ -58,7 +60,10 @@ function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
   if (letterPosition.length > 0) {
     fillLetterBox(letterPosition, letter);
-    // another if else to see if player won?
+    correctLetters += letterPosition.length;
+    if (correctLetters === selectedWord.length) {
+      win();
+    }
   } else if (wrongGuesses <= 5) {
     // function för att disabla bokstavsknapp
     // function för att öka wrongGuesses ett steg
@@ -70,11 +75,18 @@ function doGuess(letter) {
   }
 }
 
+// function that is called when player wins
+function win() {
+  setButtonsDisabled = true;
+  startGameBtnEl.textContent = "Starta om spelet";
+  messageEl.textContent = "Yey du vann!";
+}
+
 // function to fill out letter boxes with correct letter
 // loops through array of letter positions
 // connect the number element to the position in arry w letter boxes
 // change value of input in letterbox to the guessed letter
-function fillLetterBox(guessedLetterPosition, guessedLetter) { 
+function fillLetterBox(guessedLetterPosition, guessedLetter) {
   for (let i = 0; i < guessedLetterPosition.length; i++) {
     let position = guessedLetterPosition[i];
     let box = letterBoxEls[position];
@@ -87,7 +99,7 @@ function fillLetterBox(guessedLetterPosition, guessedLetter) {
 function isLetterInWord(letter) {
   let letterIndices = [];
   for (let i = 0; i < selectedWord.length; i++) {
-    if (letter == (selectedWord[i])) {
+    if (letter == selectedWord[i]) {
       letterIndices.push(i);
     }
   }
