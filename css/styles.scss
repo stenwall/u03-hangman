@@ -12,7 +12,7 @@ $header-txt: #41806B;
 $body-text: #382b22;
 $light-pink: #f7e9de;
 $pink: #FFC88A;
-$dark-pink: #f9c4d2;
+$dark-pink: #41806B;
 $pink-border: #063A4E;
 $pink-shadow: #ffe3e2;
 
@@ -49,13 +49,13 @@ header {
 main {
   flex: 1;
   padding: 1.5em;
-  &:after {
-    content: "\00a0"; /* &nbsp; */
-    display: block;
-    margin-top: var(--space);
-    height: 0px;
-    visibility: hidden;
-  }
+  // &:after {
+  //   content: "\00a0"; /* &nbsp; */
+  //   display: block;
+  //   margin-top: var(--space);
+  //   height: 0px;
+  //   visibility: hidden;
+  // }
   article {
     display: flex;
     flex-direction: column;
@@ -101,12 +101,12 @@ footer {
   align-items: center;
 }
 
-// #letterButtons button:not(last-child) {
-//   margin: 4px 4px;
-//   cursor: pointer;
-//   max-width: 84px;
-//   min-width: 84px;
-// }
+#letterButtons button:not(last-child) {
+  margin: 4px 4px;
+  cursor: pointer;
+  max-width: 84px;
+  min-width: 84px;
+}
 
 #letterBoxes li {
   display: inline-flex;
