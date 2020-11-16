@@ -15,7 +15,7 @@ const wordList = [
 // save the randomly generated word
 let selectedWord = null;
 // number of wrong guesses made
-let wrongGuesses = 0;
+let wrongGuesses = 1;
 // number of correct letters
 let correctLetters = 0;
 // DOM-node: hangman image
@@ -58,7 +58,6 @@ function letterButtonClickHandler(event) {
 // function that is called when player guesses
 function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
-  let imgSrcName = `images/h{$wrongGuesses}.png`;
   if (letterPosition.length > 0) {
     fillLetterBox(letterPosition, letter);
     correctLetters += letterPosition.length;
@@ -67,13 +66,18 @@ function doGuess(letter) {
     }
   } else if (wrongGuesses <= 5) {
     wrongGuesses++;
-    hangmanImgEl.setAttribute("src", imgSrcName);
-    // function för att ta fram nästa bild
+    hangmanImage();
   } else {
     // function för att disabla alla knappar
     // function för nästa bild
     // text game over...
   }
+}
+
+// function to change the hangman image
+function hangmanImage() {
+  let imgSrcName = `images/h${wrongGuesses}.png`;
+  hangmanImgEl.setAttribute("src", imgSrcName);
 }
 
 // function that is called when player wins
@@ -82,6 +86,8 @@ function win() {
   startGameBtnEl.textContent = "Starta om spelet";
   messageEl.textContent = "Yey du vann!";
 }
+
+//
 
 // function to fill out letter boxes with correct letter
 // loops through array of letter positions
@@ -146,4 +152,6 @@ function startGame() {
   selectedWord = generateRandomWord(wordList).toUpperCase();
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
+  wrongGuesses = 0; // delete old guesses
+  hangmanImage(); // update hangman image
 }
