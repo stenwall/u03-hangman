@@ -5,16 +5,25 @@
 $header-font: "Schoolbell", verdana, sans-serif !important;
 $body-font: "Baloo 2", sans-serif, monospace !important;
 
+// color theme colors
+$dark-wheat: #F5D6C0;
+$salmon: #FF8B72;
+$tarawera: #063A4E;
+$viridian: #41806B;
+$chardonnay: #FFC88A;
+
 // colors
-$body-bg: #F5D6C0;
-$header-bg: #063A4E;
-$header-txt: #41806B;
-$body-text: #382b22;
-$light-pink: #f7e9de;
-$pink: #FFC88A;
-$dark-pink: #41806B;
-$pink-border: #063A4E;
-$pink-shadow: #ffe3e2;
+$body-bg: $dark-wheat;
+$header-bg: $tarawera;
+$h1-color: $viridian;
+$h2-color: $tarawera;
+$body-text: $tarawera;
+$btn-font-color: $dark-wheat;
+$light-pink: $salmon;
+$pink: chardonnay;
+$dark-pink: $viridian;
+$pink-border: $tarawera;
+$pink-shadow: $chardonnay;
 
 * {
   box-sizing: border-box;
@@ -36,11 +45,11 @@ body {
 
 header {
   background-color: $header-bg;
-  color: $header-txt;
   padding: 1rem 2rem;
   flex: none;
   h1 {
     font-family: $header-font;
+    color: $h1-color;
     font-size: 4.5em;
     margin-bottom: 1rem;
   }
@@ -62,8 +71,7 @@ main {
     padding: 1.5em;
     align-items: center;
     h2 {
-      text-align: center;
-      color: #777;
+      color: $h2-color;
       margin-bottom: 1.5em;
     }
   }
