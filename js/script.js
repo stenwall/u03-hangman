@@ -43,7 +43,6 @@ window.onload = pageInit;
 function pageInit() {
   for (const button of letterButtonEls) {
     button.addEventListener("click", letterButtonClickHandler);
-    // other functions go here
   }
   setButtonsDisabled(true);
 }
@@ -66,7 +65,7 @@ function doGuess(letter) {
     if (correctLetters === selectedWord.length) {
       win();
     }
-  } else if (wrongGuesses <= 4) {
+  } else if (wrongGuesses <= 5) {
     --wrongGuessesLeft;
     messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
     ++wrongGuesses;
@@ -94,6 +93,7 @@ function win() {
 // function that is called when player loses
 function lose() {
   setButtonsDisabled(true);
+  remainingLetters();
   startGameBtnEl.textContent = "Starta om spelet";
   messageEl.textContent = "Du förlorade!";
 }
@@ -120,6 +120,16 @@ function isLetterInWord(letter) {
     }
   }
   return letterIndices;
+}
+
+// function to fill out remaining letters when player lost
+function remainingLetters() {
+  for (let i = 0; i < selectedWord.length; i++) {
+    let box = letterBoxEls[i];
+    if (box.firstElementChild.value == "&nbsp") {
+      box.firstElementChild.value = i;
+    }
+  }
 }
 
 // function for enabling and disabling all letter buttons
@@ -163,5 +173,6 @@ function startGame() {
   createLetterBoxes(selectedWordLength);
   wrongGuessesLeft = 6; // reset guesses left
   wrongGuesses = 0; // delete old guesses
+  correctLetters = 0; // reset correct letter count
   hangmanImage(); // update hangman image
 }
