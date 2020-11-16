@@ -18,8 +18,8 @@ let selectedWord = null;
 let wrongGuesses = 0;
 // number of correct letters
 let correctLetters = 0;
-// hangman image
-let hangmanImg;
+// DOM-node: hangman image
+let hangmanImgEl = document.querySelector("#hangman");
 // DOM-node: where messages show up
 let msgHolderEl = document.querySelector("#message");
 // DOM-node: button to start game
@@ -58,6 +58,7 @@ function letterButtonClickHandler(event) {
 // function that is called when player guesses
 function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
+  let imgSrcName = `images/h{$wrongGuesses}.png`;
   if (letterPosition.length > 0) {
     fillLetterBox(letterPosition, letter);
     correctLetters += letterPosition.length;
@@ -65,8 +66,8 @@ function doGuess(letter) {
       win();
     }
   } else if (wrongGuesses <= 5) {
-    // function för att disabla bokstavsknapp
-    // function för att öka wrongGuesses ett steg
+    wrongGuesses++;
+    hangmanImgEl.setAttribute("src", imgSrcName);
     // function för att ta fram nästa bild
   } else {
     // function för att disabla alla knappar
