@@ -16,10 +16,12 @@ const wordList = [
 let selectedWord = null;
 // number of wrong guesses made
 let wrongGuesses = 0;
+// number of wrong guesses left before losing
+let wrongGuessesLeft = 6;
 // number of correct letters
 let correctLetters = 0;
-// hangman image
-let hangmanImg;
+// DOM-node: hangman image
+let hangmanImgEl = document.querySelector("#hangman");
 // DOM-node: where messages show up
 let msgHolderEl = document.querySelector("#message");
 // DOM-node: button to start game
@@ -41,7 +43,6 @@ window.onload = pageInit;
 function pageInit() {
   for (const button of letterButtonEls) {
     button.addEventListener("click", letterButtonClickHandler);
-    // other functions go here
   }
   setButtonsDisabled(true);
 }
@@ -56,23 +57,35 @@ function letterButtonClickHandler(event) {
 }
 
 // function that is called when player guesses
+// the letter argument is passed down to function isLetterInWord()
+// which returns the aray letterIndices that is then stores in a variable
+// the number returned in the array is equal to the position of the
+// correctly guessed letter in the word
+// (e.g. for guessing "F" in "KAFFE", the array returns [2, 3]) 
 function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
-  if (letterPosition.length > 0) {
+  if (letterPosition.length > 0) { // if the array is longer than 0 the letter is correct
     fillLetterBox(letterPosition, letter);
-    correctLetters += letterPosition.length;
-    if (correctLetters === selectedWord.length) {
+    correctLetters += letterPosition.length; // saves new number of correct letters
+    if (correctLetters === selectedWord.length) { // if the correctly guessed letter number are equal to the length of the selected word, player wins
       win();
     }
-  } else if (wrongGuesses <= 5) {
-    // function för att disabla bokstavsknapp
-    // function för att öka wrongGuesses ett steg
-    // function för att ta fram nästa bild
   } else {
-    // function för att disabla alla knappar
-    // function för nästa bild
-    // text game over...
+    ++wrongGuesses; // increment number of wrong guesses made
+    hangmanImage(); // update the hangman image
+    if (wrongGuesses <= 5) {
+      --wrongGuessesLeft; // decrement number of wrong guesses done
+      messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
+    } else {
+      lose();
+    }
   }
+}
+
+// function to change the hangman image
+function hangmanImage() {
+  let imgSrcName = `images/h${wrongGuesses}.png`;
+  hangmanImgEl.setAttribute("src", imgSrcName);
 }
 
 // function that is called when player wins
@@ -82,9 +95,17 @@ function win() {
   messageEl.textContent = "Yey du vann!";
 }
 
+// function that is called when player loses
+function lose() {
+  setButtonsDisabled(true);
+  remainingLetters();
+  startGameBtnEl.textContent = "Starta om spelet";
+  messageEl.textContent = "Du förlorade!";
+}
+
 // function to fill out letter boxes with correct letter
 // loops through array of letter positions
-// connect the number element to the position in arry w letter boxes
+// connect the number element to the position in array w letter boxes
 // change value of input in letterbox to the guessed letter
 function fillLetterBox(guessedLetterPosition, guessedLetter) {
   for (let i = 0; i < guessedLetterPosition.length; i++) {
@@ -104,6 +125,17 @@ function isLetterInWord(letter) {
     }
   }
   return letterIndices;
+}
+
+// function to fill out remaining letters when player lost
+function remainingLetters() {
+  for (let i = 0; i < selectedWord.length; i++) {
+    let box = letterBoxEls[i];
+    if (box.firstElementChild.value == "\xa0") {
+      let letter = selectedWord[i];
+      box.firstElementChild.value = letter;
+    }
+  }
 }
 
 // function for enabling and disabling all letter buttons
@@ -145,4 +177,8 @@ function startGame() {
   selectedWord = generateRandomWord(wordList).toUpperCase();
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
+  wrongGuessesLeft = 6; // reset guesses left
+  wrongGuesses = 0; // delete old guesses
+  correctLetters = 0; // reset correct letter count
+  hangmanImage(); // update hangman image
 }
