@@ -65,7 +65,7 @@ function doGuess(letter) {
     if (correctLetters === selectedWord.length) {
       win();
     }
-  } else if (wrongGuesses <= 5) {
+  } else if (wrongGuesses <= 4) {
     --wrongGuessesLeft;
     messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
     ++wrongGuesses;
@@ -126,8 +126,9 @@ function isLetterInWord(letter) {
 function remainingLetters() {
   for (let i = 0; i < selectedWord.length; i++) {
     let box = letterBoxEls[i];
-    if (box.firstElementChild.value == "&nbsp") {
-      box.firstElementChild.value = i;
+    if (box.firstElementChild.value == "\xa0") {
+      let letter = selectedWord[i];
+      box.firstElementChild.value = letter;
     }
   }
 }
