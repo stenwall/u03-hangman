@@ -57,19 +57,24 @@ function letterButtonClickHandler(event) {
 }
 
 // function that is called when player guesses
+// the letter argument is passed down to function isLetterInWord()
+// which returns the aray letterIndices that is then stores in a variable
+// the number returned in the array is equal to the position of the
+// correctly guessed letter in the word
+// (e.g. for guessing "F" in "KAFFE", the array returns [2, 3]) 
 function doGuess(letter) {
   let letterPosition = isLetterInWord(letter);
-  if (letterPosition.length > 0) {
+  if (letterPosition.length > 0) { // if the array is longer than 0 the letter is correct
     fillLetterBox(letterPosition, letter);
-    correctLetters += letterPosition.length;
-    if (correctLetters === selectedWord.length) {
+    correctLetters += letterPosition.length; // saves new number of correct letters
+    if (correctLetters === selectedWord.length) { // if the correctly guessed letter number are equal to the length of the selected word, player wins
       win();
     }
   } else {
-    ++wrongGuesses;
-    hangmanImage();
+    ++wrongGuesses; // increment number of wrong guesses made
+    hangmanImage(); // update the hangman image
     if (wrongGuesses <= 5) {
-      --wrongGuessesLeft;
+      --wrongGuessesLeft; // decrement number of wrong guesses done
       messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
     } else {
       lose();
