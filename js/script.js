@@ -65,15 +65,15 @@ function doGuess(letter) {
     if (correctLetters === selectedWord.length) {
       win();
     }
-  } else if (wrongGuesses <= 4) {
-    --wrongGuessesLeft;
-    messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
-    ++wrongGuesses;
-    hangmanImage();
   } else {
-    lose();
     ++wrongGuesses;
     hangmanImage();
+    if (wrongGuesses <= 5) {
+      --wrongGuessesLeft;
+      messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
+    } else {
+      lose();
+    }
   }
 }
 
