@@ -1,11 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
+// fonts
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Schoolbell&display=swap");
 
-$bg: #fff;
-$text: #382b22;
-$light-pink: #fff0f0;
-$pink: #ffe9e9;
+$header-font: "Schoolbell", verdana, sans-serif !important;
+$body-font: "Baloo 2", sans-serif, monospace !important;
+
+// colors
+$body-bg: #F5D6C0;
+$header-bg: #063A4E;
+$header-txt: #41806B;
+$body-text: #382b22;
+$light-pink: #f7e9de;
+$pink: #FFC88A;
 $dark-pink: #f9c4d2;
-$pink-border: #b18597;
+$pink-border: #063A4E;
 $pink-shadow: #ffe3e2;
 
 * {
@@ -15,8 +23,11 @@ $pink-shadow: #ffe3e2;
 }
 
 body {
-  color: #666;
-  font-family: sans-serif;
+  color: $body-text;
+  background-color: $body-bg;
+  font-family: $body-font;
+  font-size: 1rem;
+  line-height: 1.5;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -24,13 +35,14 @@ body {
 }
 
 header {
-  background-color: silver;
-  color: #fff;
+  background-color: $header-bg;
+  color: $header-txt;
+  padding: 1rem 2rem;
   flex: none;
   h1 {
-    margin: 0;
+    font-family: $header-font;
     font-size: 4.5em;
-    text-align: center;
+    margin-bottom: 1rem;
   }
 }
 
@@ -51,8 +63,8 @@ main {
     align-items: center;
     h2 {
       text-align: center;
-        color: #777;
-        margin-bottom: 1.5em;
+      color: #777;
+      margin-bottom: 1.5em;
     }
   }
 }
@@ -129,17 +141,18 @@ button {
   font-family: inherit;
   &.btn {
     font-weight: 600;
-    color: $text;
+    color: $body-text;
     text-transform: uppercase;
     padding: 1.25em 2em;
     background: $light-pink;
     border: 2px solid $pink-border;
     border-radius: 0.75em;
     transform-style: preserve-3d;
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+      background 150ms cubic-bezier(0, 0, 0.58, 1);
     &::before {
       position: absolute;
-      content: '';
+      content: "";
       width: 100%;
       height: 100%;
       top: 0;
@@ -150,7 +163,8 @@ button {
       border-radius: inherit;
       box-shadow: 0 0 0 2px $pink-border, 0 0.625em 0 0 $pink-shadow;
       transform: translate3d(0, 0.75em, -1em);
-      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+        box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
     }
     &:hover {
       background: $pink;
@@ -170,4 +184,3 @@ button {
     }
   }
 }
-
