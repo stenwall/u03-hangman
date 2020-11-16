@@ -15,7 +15,9 @@ const wordList = [
 // save the randomly generated word
 let selectedWord = null;
 // number of wrong guesses made
-let wrongGuesses = 1;
+let wrongGuesses = 0;
+// number of wrong guesses left before losing
+let wrongGuessesLeft = 6;
 // number of correct letters
 let correctLetters = 0;
 // DOM-node: hangman image
@@ -64,13 +66,15 @@ function doGuess(letter) {
     if (correctLetters === selectedWord.length) {
       win();
     }
-  } else if (wrongGuesses <= 5) {
-    wrongGuesses++;
+  } else if (wrongGuesses <= 4) {
+    --wrongGuessesLeft;
+    messageEl.textContent = `Du har ${wrongGuessesLeft} felgissningar kvar`;
+    ++wrongGuesses;
     hangmanImage();
   } else {
-    // function för att disabla alla knappar
-    // function för nästa bild
-    // text game over...
+    lose();
+    ++wrongGuesses;
+    hangmanImage();
   }
 }
 
@@ -87,11 +91,16 @@ function win() {
   messageEl.textContent = "Yey du vann!";
 }
 
-//
+// function that is called when player loses
+function lose() {
+  setButtonsDisabled(true);
+  startGameBtnEl.textContent = "Starta om spelet";
+  messageEl.textContent = "Du förlorade!";
+}
 
 // function to fill out letter boxes with correct letter
 // loops through array of letter positions
-// connect the number element to the position in arry w letter boxes
+// connect the number element to the position in array w letter boxes
 // change value of input in letterbox to the guessed letter
 function fillLetterBox(guessedLetterPosition, guessedLetter) {
   for (let i = 0; i < guessedLetterPosition.length; i++) {
@@ -152,6 +161,7 @@ function startGame() {
   selectedWord = generateRandomWord(wordList).toUpperCase();
   let selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
+  wrongGuessesLeft = 6; // reset guesses left
   wrongGuesses = 0; // delete old guesses
   hangmanImage(); // update hangman image
 }
