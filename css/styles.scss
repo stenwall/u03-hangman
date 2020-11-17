@@ -76,7 +76,7 @@ main {
     flex-direction: column;
     padding: 1.5rem;
     align-items: left;
-    margin-bottom: 2rem;
+    // margin-bottom: 1rem;
     h2 {
       font-size: 1.5rem;
       color: $h2-color;
@@ -99,12 +99,9 @@ footer {
 
 #startGameBtn {
   font-size: 1.5rem;
-  margin-left: 0.5rem;
-}
-
-#gameBoard {
-  padding: 1rem 0;
-  margin: 1rem 0;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 #letterButtons {
@@ -118,6 +115,14 @@ footer {
   }
 }
 
+#topGameBoard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+
+}
+
 #letterBoxes {
   li {
     display: inline-flex;
@@ -129,16 +134,27 @@ footer {
     color: $viridian;
     font-size: 3rem;
     font-weight: 600;
-    margin: 2rem 0.5rem;
+    margin: 0 0.5rem;
     padding: 1rem 0;
     text-align: center;
     width: 5rem;
   }
 }
 
+#bottomGameBoard {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+}
+
 #message {
-  padding-top: 20px;
-  font-size: 1.5em;
+  font-family: $header-font;
+  font-size: 4rem;
+  margin-top: 3rem;
+}
+
+#hangman {
+  margin-top: 2rem;
 }
 
 .break {
