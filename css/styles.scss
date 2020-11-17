@@ -6,24 +6,24 @@ $header-font: "Schoolbell", verdana, sans-serif !important;
 $body-font: "Baloo 2", sans-serif, monospace !important;
 
 // color theme colors
-$dark-wheat: #F5D6C0;
-$salmon: #FF8B72;
-$tarawera: #063A4E;
-$viridian: #41806B;
-$chardonnay: #FFC88A;
+$dark-wheat: #f5d6c0;
+$salmon: #ff8b72;
+$tarawera: #063a4e;
+$viridian: #41806b;
+$chardonnay: #ffc88a;
 
 // colors
 $body-bg: $dark-wheat;
 $header-bg: $tarawera;
-$h1-color: $viridian;
+$h1-color: $chardonnay;
 $h2-color: $tarawera;
 $body-text: $tarawera;
 $btn-font-color: $dark-wheat;
-$light-pink: $salmon;
+$btn-bg: $salmon;
 $pink: chardonnay;
-$dark-pink: $viridian;
-$pink-border: $tarawera;
-$pink-shadow: $chardonnay;
+$btn-3d: $viridian;
+$btn-border: $tarawera;
+$btn-shadow: $chardonnay;
 
 * {
   box-sizing: border-box;
@@ -45,12 +45,13 @@ body {
 
 header {
   background-color: $header-bg;
+  // background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23063a4e' fill-opacity='1' d='M0,192L30,186.7C60,181,120,171,180,149.3C240,128,300,96,360,112C420,128,480,192,540,202.7C600,213,660,171,720,165.3C780,160,840,192,900,192C960,192,1020,160,1080,144C1140,128,1200,128,1260,117.3C1320,107,1380,85,1410,74.7L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
   padding: 1rem 2rem;
   flex: none;
   h1 {
     font-family: $header-font;
     color: $h1-color;
-    font-size: 4.5em;
+    font-size: 4.5rem;
     margin-bottom: 1rem;
   }
 }
@@ -58,27 +59,25 @@ header {
 main {
   flex: 1;
   padding: 1.5em;
-  // &:after {
-  //   content: "\00a0"; /* &nbsp; */
-  //   display: block;
-  //   margin-top: var(--space);
-  //   height: 0px;
-  //   visibility: hidden;
-  // }
+  &:after {
+    content: "\00a0"; /* &nbsp; */
+    display: block;
+    margin-top: var(--space);
+    height: 0px;
+    visibility: hidden;
+  }
   article {
     display: flex;
     flex-direction: column;
-    padding: 1.5em;
-    align-items: center;
+    padding: 1.5rem;
+    align-items: left;
+    margin-bottom: 2rem;
     h2 {
+      font-size: 1.5rem;
       color: $h2-color;
-      margin-bottom: 1.5em;
+      margin-bottom: 1.5rem;
     }
   }
-}
-
-ul {
-  list-style-type: none;
 }
 
 footer {
@@ -94,11 +93,13 @@ footer {
 }
 
 #startGameBtn {
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  margin-left: 0.5rem;
 }
 
 #gameBoard {
-  padding: 10px 0;
+  padding: 1rem 0;
+  margin: 1rem 0;
 }
 
 #letterButtons {
@@ -107,29 +108,27 @@ footer {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  button {
+    margin: 1.2rem 0.5rem;
+  }
 }
 
-#letterButtons button:not(last-child) {
-  margin: 4px 4px;
-  cursor: pointer;
-  max-width: 84px;
-  min-width: 84px;
-}
-
-#letterBoxes li {
-  display: inline-flex;
-}
-
-#letterBoxes input {
-  border: 1px solid #666;
-  color: #666;
-  font-size: 1.5em;
-  font-weight: bold;
-  line-height: 2em;
-  margin-top: 1em;
-  padding: 20px 5px;
-  text-align: center;
-  width: 2em;
+#letterBoxes {
+  li {
+    display: inline-flex;
+  }
+  input {
+    border: 2px solid $btn-border;
+    border-radius: 0.5rem;
+    font-family: $body-font;
+    color: $viridian;
+    font-size: 3rem;
+    font-weight: 600;
+    margin: 2rem 0.5rem;
+    padding: 1rem 0.5rem;
+    text-align: center;
+    width: 2em;
+  }
 }
 
 #message {
@@ -138,57 +137,52 @@ footer {
 }
 
 button {
-  position: relative;
-  display: inline-block;
   cursor: pointer;
   outline: none;
   border: 0;
-  vertical-align: middle;
   text-decoration: none;
-  font-size: inherit;
-  font-family: inherit;
-  &.btn {
-    font-weight: 600;
-    color: $body-text;
-    text-transform: uppercase;
-    padding: 1.25em 2em;
-    background: $light-pink;
-    border: 2px solid $pink-border;
-    border-radius: 0.75em;
-    transform-style: preserve-3d;
+  font-size: 1.5rem;
+  font-family: $body-font;
+  font-weight: 700;
+  color: $body-text;
+  text-transform: uppercase;
+  padding: 1.25em 2em;
+  background: $btn-bg;
+  border: 2px solid $btn-border;
+  border-radius: 0.75em;
+  transform-style: preserve-3d;
+  transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
+    background 150ms cubic-bezier(0, 0, 0.58, 1);
+  &::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $btn-3d;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px $btn-border, 0 0.625em 0 0 $btn-shadow;
+    transform: translate3d(0, 0.75em, -1em);
     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
-      background 150ms cubic-bezier(0, 0, 0.58, 1);
+      box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+  }
+  &:hover {
+    background: $btn-shadow;
+    transform: translate(0, 0.25em);
     &::before {
-      position: absolute;
-      content: "";
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: $dark-pink;
-      border-radius: inherit;
-      box-shadow: 0 0 0 2px $pink-border, 0 0.625em 0 0 $pink-shadow;
-      transform: translate3d(0, 0.75em, -1em);
-      transition: transform 150ms cubic-bezier(0, 0, 0.58, 1),
-        box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
+      box-shadow: 0 0 0 2px $btn-border, 0 0.5em 0 0 $btn-shadow;
+      transform: translate3d(0, 0.5em, -1em);
     }
-    &:hover {
-      background: $pink;
-      transform: translate(0, 0.25em);
-      &::before {
-        box-shadow: 0 0 0 2px $pink-border, 0 0.5em 0 0 $pink-shadow;
-        transform: translate3d(0, 0.5em, -1em);
-      }
-    }
-    &:active {
-      background: $pink;
-      transform: translate(0em, 0.75em);
-      &::before {
-        box-shadow: 0 0 0 2px $pink-border, 0 0 $pink-shadow;
-        transform: translate3d(0, 0, -1em);
-      }
+  }
+  &:active {
+    background: $btn-shadow;
+    transform: translate(0em, 0.75em);
+    &::before {
+      box-shadow: 0 0 0 2px $btn-border, 0 0 $btn-shadow;
+      transform: translate3d(0, 0, -1em);
     }
   }
 }
