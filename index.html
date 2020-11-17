@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Hangman</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.min.css">
+    <script type="text/javascript" src="js/script.js" defer></script>
 </head>
 
 <body>
@@ -14,61 +15,76 @@
     <main>
         <article>
             <h2>Välkommen till spelet Hänga gubbe.</h2>
-            <p>När du trycker på starta spelet, kommer datorn att välja ett ord slumpmässigt. <br/>
-               Det kommer då dyka upp ett visst antal fält som motsvarar antalet bokstäver i ordet. <br/>
-               Ditt mål är att gissa ordet genom att trycka på bokstavsknapparna.<br/>
-               För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.
+            <p>När du trycker på starta spelet, kommer datorn att välja ett ord slumpmässigt. <br />
+                Det kommer då dyka upp ett visst antal fält som motsvarar antalet bokstäver i ordet. <br />
+                Ditt mål är att gissa ordet genom att trycka på bokstavsknapparna.<br />
+                För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du
+                gissade på motsvarar i ordet.
             </p>
         </article>
-        <button class="btn btn--stripe" type="button" id="startGameBtn">Starta spelet</button>
-        <section id="gameBoard">
-            <ul id="letterButtons">
-                <li><button class="btn btn--stripe" type="button" value="Q">Q</button></li>
-                <li><button class="btn btn--stripe" type="button" value="W">W</button></li>
-                <li><button class="btn btn--stripe" type="button" value="E">E</button></li>
-                <li><button class="btn btn--stripe" type="button" value="R">R</button></li>
-                <li><button class="btn btn--stripe" type="button" value="T" disabled>T</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Y">Y</button></li>
-                <li><button class="btn btn--stripe" type="button" value="U">U</button></li>
-                <li><button class="btn btn--stripe" type="button" value="I">I</button></li>
-                <li><button class="btn btn--stripe" type="button" value="O">O</button></li>
-                <li><button class="btn btn--stripe" type="button" value="P">P</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Å">Å</button></li>
-                <div class="break"></div>
-                <li><button class="btn btn--stripe" type="button" value="A">A</button></li>
-                <li><button class="btn btn--stripe" type="button" value="S">S</button></li>
-                <li><button class="btn btn--stripe" type="button" value="D">D</button></li>
-                <li><button class="btn btn--stripe" type="button" value="F">F</button></li>
-                <li><button class="btn btn--stripe" type="button" value="G">G</button></li>
-                <li><button class="btn btn--stripe" type="button" value="H">H</button></li>
-                <li><button class="btn btn--stripe" type="button" value="J">J</button></li>
-                <li><button class="btn btn--stripe" type="button" value="K">K</button></li>
-                <li><button class="btn btn--stripe" type="button" value="L">L</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Ö">Ö</button></li>
-                <li><button class="btn btn--stripe" type="button" value="Ä">Ä</button></li>
-                <div class="break"></div>
-                <li><button class="btn btn--stripe" type="button" value="Z">Z</button></li>
-                <li><button class="btn btn--stripe" type="button" value="X">X</button></li>
-                <li><button class="btn btn--stripe" type="button" value="C">C</button></li>
-                <li><button class="btn btn--stripe" type="button" value="V">V</button></li>
-                <li><button class="btn btn--stripe" type="button" value="B">B</button></li>
-                <li><button class="btn btn--stripe" type="button" value="N">N</button></li>
-                <li><button class="btn btn--stripe" type="button" value="M">M</button></li>
-            </ul>
+        <!-- container for aligning button and letter boxes above gameboard -->
+        <div id=topGameBoard>
+            <button class="btn" type="button" id="startGameBtn">Starta spelet</button>
             <div id="letterBoxes">
-                <!-- This is where the matched letters should appear, these should match the number of letters in the selected word -->
-                <ul></ul>
+                <ul>
+                    <!-- empty letter boxes appear here -->
+                </ul>
             </div>
+        </div>
+        <!-- changing #gameBoard to <div> to make it more semantic-->
+        <div id="gameBoard">
+            <!-- letter buttons in qwerty-order -->
+            <ul id="letterButtons">
+                <li><button class="btn" type="button" value="Q">Q</button></li>
+                <li><button class="btn" type="button" value="W">W</button></li>
+                <li><button class="btn" type="button" value="E">E</button></li>
+                <li><button class="btn" type="button" value="R">R</button></li>
+                <li><button class="btn" type="button" value="T" disabled>T</button></li>
+                <li><button class="btn" type="button" value="Y">Y</button></li>
+                <li><button class="btn" type="button" value="U">U</button></li>
+                <li><button class="btn" type="button" value="I">I</button></li>
+                <li><button class="btn" type="button" value="O">O</button></li>
+                <li><button class="btn" type="button" value="P">P</button></li>
+                <li><button class="btn" type="button" value="Å">Å</button></li>
+
+                <!--line-break that won't mess upp for screen readers-->
+                <div class="break"></div>
+
+                <li><button class="btn" type="button" value="A">A</button></li>
+                <li><button class="btn" type="button" value="S">S</button></li>
+                <li><button class="btn" type="button" value="D">D</button></li>
+                <li><button class="btn" type="button" value="F">F</button></li>
+                <li><button class="btn" type="button" value="G">G</button></li>
+                <li><button class="btn" type="button" value="H">H</button></li>
+                <li><button class="btn" type="button" value="J">J</button></li>
+                <li><button class="btn" type="button" value="K">K</button></li>
+                <li><button class="btn" type="button" value="L">L</button></li>
+                <li><button class="btn" type="button" value="Ö">Ö</button></li>
+                <li><button class="btn" type="button" value="Ä">Ä</button></li>
+
+                <!--line-break that won't mess upp for screen readers-->
+                <div class="break"></div>
+
+                <li><button class="btn" type="button" value="Z">Z</button></li>
+                <li><button class="btn" type="button" value="X">X</button></li>
+                <li><button class="btn" type="button" value="C">C</button></li>
+                <li><button class="btn" type="button" value="V">V</button></li>
+                <li><button class="btn" type="button" value="B">B</button></li>
+                <li><button class="btn" type="button" value="N">N</button></li>
+                <li><button class="btn" type="button" value="M">M</button></li>
+            </ul>
+        </div>
+        <div id="bottomGameBoard">
             <img id="hangman" src="images/h0.png" alt="hangman-image">
-        </section>
-        <section id="message">
-            <!-- This is where messages should appear -->
-        </section>
+            <!-- changed #message to <div> to make it more semantic -->
+            <div id="message">
+             <!-- messages appear here -->
+            </div>
+        </div>
     </main>
     <footer>
         Chas Academy - Hangman
     </footer>
-    <script type="text/javascript" src="js/script.js"></script>
 </body>
 
 </html>
