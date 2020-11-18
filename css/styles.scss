@@ -17,8 +17,9 @@ $fuzzy-brown: #bf6854;
 // colors
 $body-bg: $dark-wheat;
 $header-bg: $tarawera;
+$footer-bg: $tarawera;
 $h1-color: $chardonnay;
-$h2-color: $tarawera;
+$h2-color: $viridian;
 $body-text: $tarawera;
 $btn-font-color: $dark-wheat;
 $btn-bg: $salmon;
@@ -52,43 +53,36 @@ body {
 header {
   background-color: $header-bg;
   padding: 1rem 2rem;
+  width: 100vw;
   flex: none;
   position: relative;
-  z-index: 1;
   h1 {
     font-family: $header-font;
     color: $h1-color;
     font-size: 4.5rem;
   }
-  // &::after {
-  //   content: "";
-  //   width: 100vw;
-  //   height: 7rem;
-  //   top: 50%;
-  //   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23063a4e' fill-opacity='1' d='M0,192L30,186.7C60,181,120,171,180,149.3C240,128,300,96,360,112C420,128,480,192,540,202.7C600,213,660,171,720,165.3C780,160,840,192,900,192C960,192,1020,160,1080,144C1140,128,1200,128,1260,117.3C1320,107,1380,85,1410,74.7L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-  //   background-size: cover;
-  //   outline: 2px solid red;
-  //   position: absolute;
-  //   left: 0;
-  // }
+  &::after {
+    content: "";
+    width: 100vw;
+    height: 7rem;
+    top: 70%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23063a4e' fill-opacity='1' d='M0,192L30,186.7C60,181,120,171,180,149.3C240,128,300,96,360,112C420,128,480,192,540,202.7C600,213,660,171,720,165.3C780,160,840,192,900,192C960,192,1020,160,1080,144C1140,128,1200,128,1260,117.3C1320,107,1380,85,1410,74.7L1440,64L1440,0L1410,0C1380,0,1320,0,1260,0C1200,0,1140,0,1080,0C1020,0,960,0,900,0C840,0,780,0,720,0C660,0,600,0,540,0C480,0,420,0,360,0C300,0,240,0,180,0C120,0,60,0,30,0L0,0Z'%3E%3C/path%3E%3C/svg%3E") bottom center no-repeat;
+    background-size: cover;
+    outline: 2px solid red;
+    position: absolute;
+    left: 0;
+  }
 }
 
 main {
   flex: 1;
   padding: 1.5em;
-  &:after {
-    content: "\00a0"; /* &nbsp; */
-    display: block;
-    margin-top: var(--space);
-    height: 0px;
-    visibility: hidden;
-  }
   article {
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
     align-items: left;
-    // margin-bottom: 1rem;
+    margin-bottom: 1rem;
     h2 {
       font-size: 1.5rem;
       color: $h2-color;
@@ -98,15 +92,14 @@ main {
 }
 
 footer {
-  background-color: silver;
-  border-top: 1px solid #666;
-  margin-top: 20px;
-  padding-top: 30px;
-  color: #fff;
-  font-size: 1.25em;
-  width: 100%;
+  background-color: $footer-bg;
+  width: 100vw;
   flex: none;
-  text-align: center;
+  p {
+    text-align: center;
+    color: $chardonnay;
+    padding: 1rem;
+  }
 }
 
 #startGameBtn {
@@ -166,7 +159,7 @@ footer {
 }
 
 #hangman {
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .break {
