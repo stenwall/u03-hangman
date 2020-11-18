@@ -18,11 +18,11 @@ The aim of this project is to complete assignment **u03-hangman** in the course 
 - [ ] Be extensively commented (in code, markup and styling)
 
 #### Optional for higher grades:
-- [ ] Well-thought-out semantic HTML
-- [ ] Well developed CSS-structure
+- [x] Well-thought-out semantic HTML
+- [x] Well developed CSS-structure
 - [x] A consistent selection of patterns in the JS-code
-- [ ] Version control through Git is concise, uniform and frequent
-- [ ] Disregarded parts of, or the entire original code base that was distributed in the beginning of the assignment
+- [x] Version control through Git is concise, uniform and frequent
+- [x] Disregarded parts of ~or the entire~ original code base that was distributed in the beginning of the assignment
 - [x] Show understanding of the following concepts (among others):
     - Global/local variables
     - Scopes
