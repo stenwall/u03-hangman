@@ -14,14 +14,13 @@
     </header>
     <main>
         <article>
-            <h2>Välkommen till spelet Hänga gubbe.</h2>
+            <h2>Välkommen till spelet Hänga gubbe!</h2>
             <p>När du trycker på starta spelet, kommer datorn att välja ett ord slumpmässigt. </p>
             <p>Det kommer då dyka upp ett visst antal fält som motsvarar antalet bokstäver i ordet.</p>
             <p>Ditt mål är att gissa ordet genom att trycka på bokstavsknapparna.</p>
-            <p>För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du
-            gissade på motsvarar i ordet.</p>
+            <p>För varje bokstav du gissar rätt, så fylls dyker det upp en bokstav i på den plats som bokstaven du gissade på motsvarar i ordet.</p>
         </article>
-        <!-- container for aligning button and letter boxes above gameboard -->
+        <!-- container for aligning button and letter boxes above gameBoard -->
         <div id=topGameBoard>
             <button class="btn" type="button" id="startGameBtn">Starta spelet</button>
             <div id="letterBoxes">
@@ -46,7 +45,7 @@
                 <li><button class="btn" type="button" value="P">P</button></li>
                 <li><button class="btn" type="button" value="Å">Å</button></li>
 
-                <!--line-break that won't mess upp for screen readers-->
+                <!-- line-break that won't mess upp for screen readers -->
                 <div class="break"></div>
 
                 <li><button class="btn" type="button" value="A">A</button></li>
@@ -61,7 +60,7 @@
                 <li><button class="btn" type="button" value="Ö">Ö</button></li>
                 <li><button class="btn" type="button" value="Ä">Ä</button></li>
 
-                <!--line-break that won't mess upp for screen readers-->
+                <!-- line-break that won't mess upp for screen readers -->
                 <div class="break"></div>
 
                 <li><button class="btn" type="button" value="Z">Z</button></li>
@@ -73,11 +72,12 @@
                 <li><button class="btn" type="button" value="M">M</button></li>
             </ul>
         </div>
+        <!-- container for aligning image and messages below gameBoard -->
         <div id="bottomGameBoard">
             <img id="hangman" src="images/h0.png" alt="hangman-image">
             <!-- changed #message to <div> to make it more semantic -->
             <div id="message">
-             <!-- messages appear here -->
+            <!-- messages appear here -->
             </div>
         </div>
     </main>
