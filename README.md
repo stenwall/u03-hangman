@@ -15,7 +15,7 @@ The aim of this project is to complete assignment **u03-hangman** in the course 
 - [x] Follow defined standard
 - [x] Have correct indentation
 - [x] Not cause errors in execution
-- [ ] Be extensively commented (in code, markup and styling)
+- [x] Be extensively commented (in code, markup and styling)
 
 #### Optional for higher grades:
 - [x] Well-thought-out semantic HTML
