@@ -21,19 +21,19 @@ let wrongGuessesLeft = 6;
 // number of correct letters
 let correctLetters = 0;
 // DOM-node: hangman image
-let hangmanImgEl = document.querySelector("#hangman");
+const hangmanImgEl = document.querySelector("#hangman");
 // DOM-node: where messages show up
-let msgHolderEl = document.querySelector("#message");
+const msgHolderEl = document.querySelector("#message");
 // DOM-node: button to start game
-let startGameBtnEl = document.querySelector("#startGameBtn");
+const startGameBtnEl = document.querySelector("#startGameBtn");
 // DOM-node: message element
-let messageEl = document.querySelector("#message");
+const messageEl = document.querySelector("#message");
 // DOM-nodeList: letter buttons
-let letterButtonEls = document.querySelectorAll("#letterButtons button");
+const letterButtonEls = document.querySelectorAll("#letterButtons button");
 // DOM-nodeList: letter boxes
-let letterBoxEls = document.querySelectorAll("#letterBoxes li");
+const letterBoxEls = document.querySelectorAll("#letterBoxes li");
 // DOM-node: letter box container
-let letterBoxContainerEl = document.querySelector("#letterBoxes ul");
+const letterBoxContainerEl = document.querySelector("#letterBoxes ul");
 
 // call function pageInit when page loads
 window.onload = pageInit;
@@ -44,14 +44,14 @@ function pageInit() {
   for (const button of letterButtonEls) {
     button.addEventListener("click", letterButtonClickHandler);
   }
-  setButtonsDisabled(true);
+  setButtonsDisabledStatus(true);
 }
 
 // callback function for clicking letter buttons
 // disable clicked button
 // sends the value of the letter button to doGuess()
 function letterButtonClickHandler(event) {
-  let clickedLetter = event.target;
+  const clickedLetter = event.target;
   clickedLetter.disabled = true;
   doGuess(clickedLetter.value);
 }
@@ -63,7 +63,7 @@ function letterButtonClickHandler(event) {
 // correctly guessed letter in the word
 // (e.g. for guessing "F" in "KAFFE", the array returns [2, 3]) 
 function doGuess(letter) {
-  let letterPosition = isLetterInWord(letter);
+  const letterPosition = isLetterInWord(letter);
   if (letterPosition.length > 0) { // if the array is longer than 0 the letter is correct
     fillLetterBox(letterPosition, letter);
     correctLetters += letterPosition.length; // saves new number of correct letters
@@ -84,20 +84,20 @@ function doGuess(letter) {
 
 // function to change the hangman image
 function hangmanImage() {
-  let imgSrcName = `images/h${wrongGuesses}.png`;
+  const imgSrcName = `images/h${wrongGuesses}.png`;
   hangmanImgEl.setAttribute("src", imgSrcName);
 }
 
 // function that is called when player wins
 function win() {
-  setButtonsDisabled(true);
+  setButtonsDisabledStatus(true);
   startGameBtnEl.textContent = "Starta om spelet";
   messageEl.textContent = "Yey du vann!";
 }
 
 // function that is called when player loses
 function lose() {
-  setButtonsDisabled(true);
+  setButtonsDisabledStatus(true);
   remainingLetters();
   startGameBtnEl.textContent = "Starta om spelet";
   messageEl.textContent = "Du förlorade!";
@@ -109,8 +109,8 @@ function lose() {
 // change value of input in letterbox to the guessed letter
 function fillLetterBox(guessedLetterPosition, guessedLetter) {
   for (let i = 0; i < guessedLetterPosition.length; i++) {
-    let position = guessedLetterPosition[i];
-    let box = letterBoxEls[position];
+    const position = guessedLetterPosition[i];
+    const box = letterBoxEls[position];
     box.firstElementChild.value = guessedLetter;
   }
 }
@@ -118,7 +118,7 @@ function fillLetterBox(guessedLetterPosition, guessedLetter) {
 // function to check if and where letter excist in selected word
 // returns empty array if letter do not excist
 function isLetterInWord(letter) {
-  let letterIndices = [];
+  const letterIndices = [];
   for (let i = 0; i < selectedWord.length; i++) {
     if (letter == selectedWord[i]) {
       letterIndices.push(i);
@@ -130,9 +130,9 @@ function isLetterInWord(letter) {
 // function to fill out remaining letters when player lost
 function remainingLetters() {
   for (let i = 0; i < selectedWord.length; i++) {
-    let box = letterBoxEls[i];
+    const box = letterBoxEls[i];
     if (box.firstElementChild.value == "\xa0") {
-      let letter = selectedWord[i];
+      const letter = selectedWord[i];
       box.firstElementChild.value = letter;
     }
   }
@@ -140,11 +140,12 @@ function remainingLetters() {
 
 // function for enabling and disabling all letter buttons
 // isDisabled = boolean
-function setButtonsDisabled(isDisabled) {
-  for (let i = 0; i < letterButtonEls.length; i++) {
-    letterButtonEls[i].disabled = isDisabled;
-  }
-}
+const setButtonsDisabledStatus = (isDisabled) => letterButtonEls.forEach(btn => btn.disabled = isDisabled)
+  
+//   for (let i = 0; i < letterButtonEls.length; i++) {
+//     letterButtonEls[i].disabled = isDisabled;
+//   }
+// }
 
 // function for creating letter boxes
 // for every letter in the selected word, loop through:
@@ -153,7 +154,7 @@ function setButtonsDisabled(isDisabled) {
 // then set letterBoxEls again so it's updated
 function createLetterBoxes(amount) {
   for (let i = 0; i < amount; i++) {
-    let newLiEl = document.createElement("LI");
+    const newLiEl = document.createElement("LI");
     newLiEl.innerHTML = '<input type="text" disabled value="&nbsp;"/>';
     letterBoxContainerEl.appendChild(newLiEl);
   }
@@ -161,7 +162,7 @@ function createLetterBoxes(amount) {
 }
 
 // function to generate a random word
-function generateRandomWord(arr) {
+const generateRandomWord = (arr) => {
   const randomNumber = Math.floor(Math.random() * arr.length);
   return arr[randomNumber];
 }
@@ -171,11 +172,11 @@ startGameBtnEl.addEventListener("click", startGame);
 
 // callback function for start button event listener
 function startGame() {
-  setButtonsDisabled(false);
+  setButtonsDisabledStatus(false);
   letterBoxEls.forEach((el) => el.remove()); // delete old letter boxes
   messageEl.textContent = ""; // delete old messages
   selectedWord = generateRandomWord(wordList).toUpperCase();
-  let selectedWordLength = selectedWord.length;
+  const selectedWordLength = selectedWord.length;
   createLetterBoxes(selectedWordLength);
   wrongGuessesLeft = 6; // reset guesses left
   wrongGuesses = 0; // delete old guesses
